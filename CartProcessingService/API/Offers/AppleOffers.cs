@@ -1,12 +1,10 @@
 ﻿using CartProcessingService.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CartProcessingService.API.Offers
 {
-    public class OffersCheck : IOffer<ShoppingCart>
+    public class AppleOffers : IOffer<ShoppingCart>
     {
         public void Apply(ShoppingCart item)
         {

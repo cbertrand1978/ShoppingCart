@@ -11,15 +11,15 @@ namespace CartProcessingService.API
     /// </summary>
     public class CheckoutService : ICheckoutService
     {
-        private IOffer<ShoppingCart> OfferChecker { get; set; }
+        private List<IOffer<ShoppingCart>> OfferCheckers { get; set; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="offerChecker"></param>
-        public CheckoutService(IOffer<ShoppingCart> offerChecker)
+        public CheckoutService(IEnumerable<IOffer<ShoppingCart>> offerCheckers)
         {
-            this.OfferChecker = offerChecker;
+            this.OfferCheckers = offerCheckers.ToList();
         }
 
         #region ICheckoutService members
@@ -68,7 +68,7 @@ namespace CartProcessingService.API
 
         private void ApplyOffers(ShoppingCart shoppingCart)
         {
-            this.OfferChecker.Apply(shoppingCart);
+            this.OfferCheckers.ForEach(x => x.Apply(shoppingCart));
 
             var totalDiscount = shoppingCart.Discounts.Sum(x => x.Amount);
             shoppingCart.SetCartTotal(shoppingCart.SubTotal - totalDiscount);

@@ -23,7 +23,8 @@ namespace CartProcessingService
         {
             services.AddControllers();
 
-            services.AddScoped<IOffer<ShoppingCart>, OffersCheck>();
+            services.AddScoped<IOffer<ShoppingCart>, AppleOffers>();
+            services.AddScoped<IOffer<ShoppingCart>, OrangeOffers>();
             services.AddScoped<ICheckoutService, CheckoutService>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

@@ -4,6 +4,7 @@ using CartProcessingService.Model;
 using System.Linq;
 using CartProcessingService.API.Offers;
 using Moq;
+using System.Collections.Generic;
 
 namespace CartProcessingService.Tests
 {
@@ -16,7 +17,7 @@ namespace CartProcessingService.Tests
         public void Setup()
         {
             this.MockOffer = new Mock<IOffer<ShoppingCart>>();
-            this.Target = new CheckoutService(this.MockOffer.Object);
+            this.Target = new CheckoutService(new List<IOffer<ShoppingCart>>() { this.MockOffer.Object });
         }
 
         private ShoppingCart GetCart()
