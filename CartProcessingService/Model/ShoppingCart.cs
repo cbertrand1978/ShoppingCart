@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CartProcessingService.API.Offers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -8,13 +9,20 @@ namespace CartProcessingService.Model
     /// <summary>
     /// A shopping cart - allows a customer to add items to their basket for purchase.
     /// </summary>
-    public class ShoppingCart
+    public class ShoppingCart : IVisitor<ShoppingCart>
     {
         [JsonPropertyName("CartContents")]
         public List<CartItem> CartContents { get; set; }
 
+
+        [JsonPropertyName("Discounts")]
+        public List<Discount> Discounts { get; set; }
+
         [JsonPropertyName("CartTotal")]
         public decimal CartTotal { get; set; }
+
+        [JsonPropertyName("SubTotal")]
+        public decimal SubTotal { get; set; }
 
         /// <summary>
         /// Default constructor.
@@ -22,6 +30,7 @@ namespace CartProcessingService.Model
         public ShoppingCart()
         {
             this.CartContents = new List<CartItem>();
+            this.Discounts = new List<Discount>();
         }
 
         /// <summary>
@@ -76,9 +85,23 @@ namespace CartProcessingService.Model
             }
         }
 
+        public void SetCartSubTotal(decimal cartSubTotal)
+        {
+            this.SubTotal = cartSubTotal;
+        }
+
         public void SetCartTotal(decimal cartTotal)
         {
             this.CartTotal = cartTotal;
+        }
+
+        /// <summary>
+        /// Apply any offers to the cart.
+        /// </summary>
+        /// <param name="offer">The offer processor to use.</param>
+        public void Visit(IOffer<ShoppingCart> offer)
+        {
+            offer.Apply(this);
         }
     }
 }

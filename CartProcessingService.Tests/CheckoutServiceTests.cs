@@ -2,18 +2,21 @@ using NUnit.Framework;
 using CartProcessingService.API;
 using CartProcessingService.Model;
 using System.Linq;
+using CartProcessingService.API.Offers;
+using Moq;
 
 namespace CartProcessingService.Tests
 {
     public class CheckoutServiceTests
     {
         public CheckoutService Target { get; set; }
-
+        public Mock<IOffer<ShoppingCart>> MockOffer { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            this.Target = new CheckoutService();
+            this.MockOffer = new Mock<IOffer<ShoppingCart>>();
+            this.Target = new CheckoutService(this.MockOffer.Object);
         }
 
         private ShoppingCart GetCart()

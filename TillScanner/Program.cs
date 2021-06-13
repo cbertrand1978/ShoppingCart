@@ -142,6 +142,23 @@ namespace TillScanner
 
             Console.WriteLine();
             Console.WriteLine("".PadRight(25, '-'));
+            Console.WriteLine($"Sub Total: {cart.SubTotal.ToString("C")}");
+            Console.WriteLine("".PadRight(25, '-'));
+
+            if (cart.Discounts.Count > 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"{"Amount".PadRight(10)} | {"Discount".PadRight(10)}");
+                Console.WriteLine("".PadRight(30, '-'));
+
+                cart.Discounts.ForEach(x =>
+                {
+                    Console.WriteLine($"-{x.Amount.ToString("C").PadRight(10)} | {x.Description.PadRight(10)}");
+                });
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("".PadRight(25, '-'));
             Console.WriteLine($"Cart Total: {cart.CartTotal.ToString("C")}");
             Console.WriteLine("".PadRight(25, '-'));
         }

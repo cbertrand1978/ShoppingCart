@@ -9,16 +9,16 @@ namespace CartProcessingService.Model
     public class Product
     {
         [JsonPropertyName("Id")]
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
         [JsonPropertyName("Name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         [JsonPropertyName("Description")]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         [JsonPropertyName("UnitPrice")]
-        public decimal UnitPrice { get; set; }
+        public virtual decimal UnitPrice { get; set; }
 
     }
 }

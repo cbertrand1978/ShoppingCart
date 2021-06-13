@@ -1,4 +1,6 @@
 using CartProcessingService.API;
+using CartProcessingService.API.Offers;
+using CartProcessingService.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +23,7 @@ namespace CartProcessingService
         {
             services.AddControllers();
 
+            services.AddScoped<IOffer<ShoppingCart>, OffersCheck>();
             services.AddScoped<ICheckoutService, CheckoutService>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

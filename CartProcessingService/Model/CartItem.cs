@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace CartProcessingService.Model
@@ -8,8 +9,6 @@ namespace CartProcessingService.Model
     /// </summary>
     public class CartItem
     {
-        //public Guid ItemId { get; set; }
-
         [JsonPropertyName("Quantity")]
         public int Quantity { get; set; }
 
@@ -24,5 +23,6 @@ namespace CartProcessingService.Model
 
         [JsonPropertyName("Product")]
         public Product Product { get; set; }
+
     }
 }
