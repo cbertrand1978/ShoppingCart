@@ -1,0 +1,31 @@
+<div style="width: 100%; display: table;">
+  <div style="display: table-row">
+    <div style="width: 600px; display: table-cell;">
+      <h2>Products</h2>
+
+      <div *ngFor="let product of products">
+        <h3>
+          <a
+            [title]="product.Name + ': ' + product.Description"
+            [routerLink]="['/products', product.Id]"
+          >
+            {{ product.Name }}
+          </a>
+          {{ product.UnitPrice | currency:'GBP' }}
+        </h3>
+        <p *ngIf="product.Description">
+          Description: {{ product.Description }}
+        </p>
+        <div class="container space-evenly">
+          <div><button (click)="removeFromCart(product)">Remove</button></div>
+          <div><button (click)="addToCart(product)">Add</button></div>
+        </div>
+      </div>
+    </div>
+    <div style="display: table-cell;">
+      <div *ngFor="let cartItem of cartItems">
+        {{ cartItem.Product.Name }} : {{ cartItem.Quantity}}
+      </div>
+    </div>
+  </div>
+</div>

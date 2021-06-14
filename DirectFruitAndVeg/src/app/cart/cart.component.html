@@ -1,0 +1,40 @@
+<h3>Cart</h3>
+
+<div class="cart-item" *ngFor="let item of processingResponse.Result.CartContents">
+  <div class="row">
+    <div class="column left ">{{ item.Product.Name }}</div>
+    <div class="column middle">{{ item.Product.UnitPrice | currency:'GBP' }}</div>
+    <div class="column middle">x{{ item.Quantity}}</div>
+    <div class="column right">{{ item.TotalPrice | currency:'GBP' }}</div>
+  </div>
+</div>
+
+<div class="cart-item row">
+  <div class="column left "></div>
+  <div class="column middle"></div>
+  <div class="column middle">Sub-Total:</div>
+  <div class="column right">{{processingResponse.Result.SubTotal | currency:'GBP'}}</div>
+</div>
+
+<div class="discount row" *ngFor="let discount of processingResponse.Result.Discounts">
+  <div class="row">
+    <div class="column left ">{{ discount.Description }}</div>
+    <div class="column middle">&nbsp;</div>
+    <div class="column middle">Discount:</div>
+    <div class="column right">-{{ discount.Amount | currency:'GBP'}}</div>
+  </div>
+</div>
+
+<div class="discount row">
+  <div class="column left "></div>
+  <div class="column middle"></div>
+  <div class="column middle">Total Discounts:</div>
+  <div class="column right">{{processingResponse.Result.SubTotal - processingResponse.Result.CartTotal | currency:'GBP'}}</div>
+</div>
+
+<div class="cart-item row">
+  <div class="column left "></div>
+  <div class="column middle"></div>
+  <div class="column middle">Cart Total:</div>
+  <div class="column right">{{processingResponse.Result.CartTotal | currency:'GBP'}}</div>
+</div>

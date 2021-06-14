@@ -21,7 +21,7 @@ namespace CartProcessingService.API.Offers
 
                 if (validDiscounts > 0)
                 {
-                    cart.Discounts.Add(new Discount() { Amount = validDiscounts * oranges.Product.UnitPrice, Description = "oranges - Buy Two Get Third Free." });
+                    cart.Discounts.Add(new Discount() { Amount = validDiscounts * oranges.Product.UnitPrice, Description = "Oranges - Buy Two Get Third Free." });
                 }
             }
         }
